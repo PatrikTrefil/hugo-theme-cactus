@@ -1,5 +1,14 @@
 {{ define "main"}}
 <div id="archive">
+  <span class="h2">Topics</span>
+  <span class="widget tagcloud">
+    {{ $AllRegularPagesCount := len .Site.RegularPages }}
+    {{ range $elem := .Site.Taxonomies.tags.Alphabetical }}
+    <a href="{{ $elem.Page.Permalink }}">
+      {{- .Page.Title -}}
+    </a>
+    {{ end }}
+  </span>
   <ul class="post-list">
   {{ range (sort .Paginator.Pages "Date" "desc") }}
     {{ $pageYear := (.Date.Format "2006") }}
